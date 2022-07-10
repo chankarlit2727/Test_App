@@ -8,11 +8,13 @@ if 'heartbeat' in settings.INSTALLED_APPS:
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('table/<int:link_id>/', views.detail, name='detail'),
-    path('table/', views.table, name='table'),
+    path('new/', views.new, name='new'),
+    path('edit/<int:id>/', views.edit, name='edit'),
+    path('delete/<int:id>/', views.delete, name='delete'),
+    # path('update/<int:id>/', views.update, name='update'),
+    # path('table/<int:link_id>/', views.detail, name='detail'),
+    # path('table/', views.table, name='table'),
     # path('<int:movie_id>/', views.movie),
     path('upload/', views.upload, name='upload'),
-    url(r'^$', views.indexx, name='indexx'),
-    url(r'^1337/$', views.details, name='1337'),
     
 ]

@@ -1,9 +1,38 @@
-{% if latest_link_list %}
-    <ul>
-    {% for link in latest_link_list %}
-        <li><a href="{% url 'detail' link.id %}">{{ link.link_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No link are available.</p>
-{% endif %}
+{% extends "urlInput/base.html" %}
+ 
+{% block title %}Create Link{% endblock title %}
+ 
+{% block content %}
+<div class="col-md-12">
+    <h4>Create Link</h4> 
+         
+ <form method="POST" class="post-form" action="{% url 'new' %}">  
+   {% csrf_token %}  
+  <div class="container">  
+    <br>  
+        <div class="form-group row">  
+            <label class="col-sm-1 col-form-label"></label>  
+                <div class="col-sm-4">  
+                    <h3>Enter Details</h3>  
+                </div>  
+         </div>  
+   
+        <div class="form-group row">  
+            <label class="col-sm-2 col-form-label">Link text: </label>  
+                <div class="col-sm-4">  
+                    {{form}}  
+                </div>  
+        </div>  
+        
+        <div class="form-group row">  
+            <label class="col-sm-1 col-form-label"></label>  
+                <div class="col-sm-4">  
+                    <button type="submit" class="btn btn-primary">Submit</button>  
+                </div>  
+       </div>  
+   </div>  
+
+  </div>  
+ </form>  
+</div> 
+{% endblock content %} 

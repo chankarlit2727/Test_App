@@ -6,7 +6,8 @@ from django.utils import timezone
 
 
 class Link(models.Model):
-    link_text = models.CharField(max_length=200)
+    link_text = models.CharField(max_length=200, default='https://')
+    link_status_code = models.CharField(max_length=100, default='')
     def __str__(self):
         return self.link_text
  

@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, Textarea
 from django import forms
 from .models import Movie, Link
 
@@ -13,4 +13,5 @@ class PostForm(ModelForm):
     class Meta:
         model = Link
         fields = '__all__'
+        
         
