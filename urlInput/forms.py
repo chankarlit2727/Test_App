@@ -19,6 +19,5 @@ class PostForm(forms.ModelForm):
         widgets = {'link_text':forms.TextInput(attrs={'class':'form-control'}),
                 'link_status_code':forms.TextInput(attrs={'class':'form-control'}),
                 }
-    
         
         

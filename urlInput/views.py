@@ -22,10 +22,16 @@ def new(request):
             form = PostForm(request.POST)
             if form.is_valid():
                 try:
-                    form.save()
+                    data = form.cleaned_data.get("link_text")
+                    r = requests.get(data)
+                    r1 = r.status_code
+                    obj = form.save(commit=False)
+                    obj.link_status_code = r1
+                    print(vars(obj))
+                    obj.save()
                     return redirect("/urlInput/")
-                except:
-                    pass
+                except requests.exceptions.HTTPError as e:
+                    print("404 Error")
     else:
         form = PostForm()
         return render(request, "urlInput/index.html", {"form": PostForm })
@@ -40,11 +46,19 @@ def edit(request, id):
 
 def update(request, id):
     link = Link.objects.get(id=id)  
-    form = PostForm(request.POST, instance = link)  
+    form = PostForm(request.POST, instance = link)
     if form.is_valid():
-            print(form.cleaned_data)
-            form.save()
+        try:
+            obj = form.save(commit=False)
+            data = form.cleaned_data.get("link_text")
+            r = requests.get(data)
+            r1 = r.status_code
+            link.link_status_code = r1
+            obj.save(update_fields=['link_text','link_status_code'])
+            print(vars(obj))
             return redirect("/urlInput/")
+        except requests.exceptions.HTTPError as e:
+            print("404 Error")
     else:
         print(form.errors.as_data())
     return render(request, 'urlInput/edit.html', {'link': link})  
