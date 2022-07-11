@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 
 import urlInput
 from .forms import UploadForm, PostForm
@@ -41,9 +41,12 @@ def edit(request, id):
 def update(request, id):
     link = Link.objects.get(id=id)  
     form = PostForm(request.POST, instance = link)  
-    if form.is_valid(): 
-        form.save(commit=True)  
-        return redirect("/urlInput/")  
+    if form.is_valid():
+            print(form.cleaned_data)
+            form.save()
+            return redirect("/urlInput/")
+    else:
+        print(form.errors.as_data())
     return render(request, 'urlInput/edit.html', {'link': link})  
 
 def delete(request, id):
