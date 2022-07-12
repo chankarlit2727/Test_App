@@ -1,0 +1,51 @@
+{% extends 'urlInput/base.html' %}
+{% load static %}
+
+<link href="{% static 'urlInput/css/main.css'%}" type="text/css" rel="stylesheet">
+
+
+{% block content %}
+<h1>Create a Link</h1>
+<form method="post">
+    <table class="inputForm">
+        {{form}}
+        <button type="submit" class="submitButton">Create</button>
+    </table>
+    {% csrf_token %}
+    
+</form>
+
+<div class="container">
+    <div class="row">
+      
+    </div>
+   </div>
+
+   
+    <table class="content-table" id="myTable">
+        <thead>
+          <tr>
+            <th>URL Link</th>
+            <th>Status</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        {% for instance in latest_link_list %}
+        <tbody>
+          <tr>
+            <td>
+                {{ instance.fields.link_text }}
+            </td>
+            <td></td>
+            <td><p data-placement="top" data-toggle="tooltip" title="Edit"><a href="edit/{{ link.id }}" class="btn btn-primary btn-xl" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></a></p></td>
+            <td><p data-placement="top" data-toggle="tooltip" title="Delete"><a href="delete/{{ link.id }}" class="btn btn-danger btn-xl" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></a></p></td>
+          </tr>
+        
+        </tbody>
+        {% endfor %}
+      </table>
+    
+    
+
+      {% endblock %}

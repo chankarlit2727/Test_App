@@ -1,0 +1,71 @@
+{% load static%}
+
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gary's site {% block title%} {% endblock %}</title>
+
+<link href="{% static 'urlInput/css/bootstrap.min.css'%}" type="text/css" rel="stylesheet">
+<link href="{% static 'urlInput/css/main.css'%}" type="text/css" rel="stylesheet">
+
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap-css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css">
+
+
+
+<script>
+    $(document).ready(function() {
+        $('#table').DataTable({     
+          "aLengthMenu": [[3, 5, 10, 25, -1], [3, 5, 10, 25, "All"]],
+            "iDisplayLength": 3
+           } 
+        );
+    } );
+    </script>
+
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'urlInput/css/dashboard.css'%}" type="text/css" rel="stylesheet">
+  </head>
+  <body>
+    
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" style="font-size:20px;" href="/urlInput">URLs Heartbeat</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a class="nav-link px-3" href="#">Sign out</a>
+    </div>
+  </div>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    {% include 'urlInput/_sidebar.html' %}
+
+    
+  </div>
+</div>
+<div class="container">
+    <div class="row">
+       {% block content %}{% endblock %}
+    </div>
+   </div>
+   
+
+  </body>
+</html>
