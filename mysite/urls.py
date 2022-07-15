@@ -21,8 +21,6 @@ from urlInput import views
 
 
 urlpatterns = [
-    # path('', views.list, name='list'),
-    path('polls/', include('polls.urls')),
     path('urlInput/', include('urlInput.urls')),
     path('admin/', admin.site.urls),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
