@@ -1,21 +1,67 @@
-from re import I
-from urllib import response
-from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse_lazy
-from django.views.generic.edit import UpdateView, DeleteView, CreateView
-from django.http import Http404, HttpResponse, HttpResponseRedirect, JsonResponse
-from .forms import UploadForm
-from .models import Link
-import time
 import requests
-from rest_framework import status, generics, mixins
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from .models import Link
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.http import JsonResponse
+from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from .serializers import LinkSerializer
-
+from rest_framework.decorators import api_view
 from rest_framework.views import APIView
+from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK,HTTP_400_BAD_REQUEST
 
+def index(request):
+    return render(request, 'urlInput/home.html')
+
+def getLink(request):
+    queryset = Link.objects.all()[:10]
+    return JsonResponse({"link":list(queryset.values())})
+ 
+    
+class CreateLink(CreateView):
+    model = Link
+    fields=['link_text','link_status_code']
+
+    def form_valid(self, form):
+        try:
+            link_text = form.instance.link_text
+            link_url= requests.get(link_text)
+            status = link_url.status_code
+            print(status)
+            if status == 200:
+                form.instance.link_status_code = True
+                form.save()   
+                return super().form_valid(form)
+        except:
+            form.instance.link_status_code = False
+            form.save()
+            return super().form_valid(form)
+            
+
+class UpdateLink(UpdateView):
+    model = Link
+    fields=['link_text','link_status_code']
+
+    def form_valid(self, form):
+        try:
+            link_text = form.instance.link_text
+            link_url= requests.get(link_text)
+            status = link_url.status_code
+            if status == 200:
+                form.instance.link_status_code = True
+                form.save()
+                
+            return super().form_valid(form)
+        except:
+            form.instance.link_status_code = False
+            form.save()
+            return super().form_valid(form)
+
+class DeleteLink(DeleteView):
+    model = Link
+    success_url=reverse_lazy('index')
+
+#//////////////////////////////////////////////////////////////////////////////
 
 # @api_view(['GET'])
 # def linkList(request):
@@ -101,62 +147,6 @@ from rest_framework.status import HTTP_200_OK,HTTP_400_BAD_REQUEST
 #//////////////////////////////////////////////////////////////////////////
 
 
-
-
-
-def index(request):
-    return render(request, 'urlInput/free.html')
-
-def getUsers(request):
-    time.sleep(10)
-    queryset = Link.objects.all()[:10]
-    return JsonResponse({"link":list(queryset.values())})
- 
-    
-class CreateLink(CreateView):
-    model = Link
-    fields=['link_text','link_status_code']
-
-    def form_valid(self, form):
-        try:
-            link_text = form.instance.link_text
-            link_url= requests.get(link_text)
-            status = link_url.status_code
-            print(status)
-            if status == 200:
-                form.instance.link_status_code = True
-                form.save()   
-                return super().form_valid(form)
-        except:
-            form.instance.link_status_code = False
-            form.save()
-            return super().form_valid(form)
-            
-
-class UpdateLink(UpdateView):
-    model = Link
-    fields=['link_text','link_status_code']
-
-    def form_valid(self, form):
-        try:
-            link_text = form.instance.link_text
-            link_url= requests.get(link_text)
-            status = link_url.status_code
-            if status == 200:
-                form.instance.link_status_code = True
-                form.save()
-                
-            return super().form_valid(form)
-        except:
-            form.instance.link_status_code = False
-            form.save()
-            return super().form_valid(form)
-
-class DeleteLink(DeleteView):
-    model = Link
-    success_url=reverse_lazy('index')
-
-#//////////////////////////////////////////////////////////////////////////////
 
 # class LinkList(APIView):
 #     renderer_classes = [TemplateHTMLRenderer]

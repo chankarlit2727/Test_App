@@ -44,7 +44,7 @@ $(document).ready(function(){
     setInterval(function(){
         $.ajax({
             type:'GET',
-            url : "{% url 'getUsers' %}",
+            url : "{% url 'getLink' %}",
             success: function(response){
                 $("#display").empty();
                 for (var key in response.link)
@@ -67,7 +67,7 @@ $(document).ready(function(){
 <script>
   // your custom ajax request here
   function ajaxRequest(params) {
-    var url = 'getUsers'
+    var url = 'getLink'
     $.get(url + '?' + $.param(params.data)).then(function (res) {
       params.success(res)
     })
