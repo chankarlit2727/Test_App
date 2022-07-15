@@ -10,15 +10,15 @@ class UploadForm(ModelForm):
         model = Movie
         fields = ['name', 'image']
 
-class PostForm(forms.ModelForm):
-    link_text = forms.CharField(required=False)
-    link_status_code = forms.CharField(required=False)
-    class Meta:
-        model = Link
-        fields = ['link_text', 'link_status_code']
-        widgets = {'link_text':forms.TextInput(attrs={'class':'form-control'}),
-                'link_status_code':forms.TextInput(attrs={'class':'form-control'}),
-                }
+# class PostForm(forms.ModelForm):
+#     link_text = forms.CharField(required=False)
+#     link_status_code = forms.CharField(required=False)
+#     class Meta:
+#         model = Link
+#         fields = ['link_text', 'link_status_code']
+#         widgets = {'link_text':forms.TextInput(attrs={'class':'form-control'}),
+#                 'link_status_code':forms.TextInput(attrs={'class':'form-control'}),
+#                 }
                 
         
         

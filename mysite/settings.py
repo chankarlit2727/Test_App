@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'heartbeat',
+    'rest_framework',
     'urlInput.apps.UrlinputConfig',
     'polls.apps.PollsConfig',
     'django.contrib.admin',
@@ -69,6 +69,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 

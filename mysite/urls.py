@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from urlInput import views
 
 
 urlpatterns = [
+    # path('', views.list, name='list'),
     path('polls/', include('polls.urls')),
     path('urlInput/', include('urlInput.urls')),
     path('admin/', admin.site.urls),
