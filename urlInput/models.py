@@ -2,6 +2,8 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
+import requests
 
 # Create your models here.
 
@@ -15,6 +17,11 @@ class Link(models.Model):
 
     def __str__(self):
         return self.link_text
+
+    def get_absolute_url(self):
+        return reverse('index')
+
+            
  
 
 class Movie(models.Model):
