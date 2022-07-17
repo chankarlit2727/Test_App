@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>My First jQuery Powered Web Page</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        p{
+        padding: 20px;
+        font: 20px sans-serif;
+        background: #f0e68c;
+    }
+    
+    </style>
+    <script src="js/jquery-3.6.0.min.js"></script>
+
+    <!-- Text CSS Selector-->
+    <!-- <script>
+        $(document).ready(function(){
+            $("h1").css("color", "#0088ff");
+        });
+    </script> -->
+
+    <!-- Text Background CSS Selector (Class/ID/Name)-->
+    <!-- <script>
+        $(document).ready(function(){
+            // Highlight element with id mark
+            $("p").css("background", "yellow");
+        });
+    </script> -->
+
+    <!-- Slideup-->
+    <!-- <script>
+        $(document).ready(function(){
+            $("p").dblclick(function(){
+                $(this).slideUp();
+            });
+        });
+    </script> -->
+
+    <!-- Hover-->
+    <!-- <script>
+    $(document).ready(function(){
+        $("p").hover(function(){
+            $(this).addClass("highlight");
+        }, function(){
+            $(this).removeClass("highlight");
+        });
+    });
+    </script> -->
+    
+
+    <!-- Alert box-->
+    <!-- <script>
+        $(function(){
+            alert("Hello World!");
+        });
+    </script> -->
+
+    <!-- Replace the text immediately-->
+    <!-- <script>
+        $(document).ready(function(){
+            $("p").text("Hello World!");
+        });
+    </script> -->
+
+    <!-- Callout the text when click-->
+    <!-- <script>
+        $(document).ready(function(){
+            $("button").click(function(){
+                $("p").text("Hello World!");
+            });            
+        });
+    </script> -->
+
+    <!-- Keypress-->
+    <!-- <script>
+        $(document).ready(function(){
+            var i = 0;
+            $('input[type="text"]').keypress(function(){
+                $("span").text(i += 1);
+                $("p").show().fadeOut();
+            });
+        });
+    </script> -->
+    <!-- Select checkbox and pop alert box-->
+    <!-- <script>
+        $(document).ready(function(){
+            $("select").change(function(){
+                var selectedOption = $(this).find(":selected").val();
+                alert("You have selected - " + selectedOption);
+            });
+        });
+    </script> -->
+    <!-- Input field focus-->
+    <!-- <script>
+    $(document).ready(function(){
+        $("input").focus(function(){
+            $(this).next("span").show().fadeOut("slow");
+        });
+    });
+    </script> -->
+
+    <!-- Form focus style-->
+    <!-- <script>
+        $(document).ready(function(){
+            $("input").blur(function(){
+                $(this).next("span").show().fadeOut("slow");
+            });
+        });
+    </script> -->
+
+    <!-- Form error-->
+    <!-- <script>
+        $(document).ready(function(){
+            $("form").submit(function(event){
+                var regex = /^[a-zA-Z]+$/;
+                var currentValue = $("#firstName").val();
+                if(regex.test(currentValue) == false){
+                    $("#result").html('<p class="error">Not valid!</p>').show().fadeOut(1000);
+                    // Preventing form submission
+                    event.preventDefault();
+                }
+            });
+        });
+        </script> -->
+
+        <!--Form resize-->
+        <!-- <script>
+            $(document).ready(function(){
+                $(window).resize(function() {
+                    $(window).bind("resize", function(){ 
+                        $("p").text("Window width: " + $(window).width() + ", " + "Window height: " + $(window).height());
+                    });
+                });
+            });
+        </script> -->
+
+        <!--Form scroll-->
+        <!-- <script>
+            $(document).ready(function(){
+                $(window).scroll(function() {
+                    $("p").show().fadeOut("slow");
+                });
+            });
+        </script> -->
+
+        <!--Hide/Show button-->
+        <!-- <script>
+            $(document).ready(function(){
+                // Hide displayed paragraphs
+                $(".hide-btn").click(function(){
+                    $("p").hide();
+                });
+                
+                // Show hidden paragraphs
+                $(".show-btn").click(function(){
+                    $("p").show();
+                });
+            });
+        </script> -->
+
+        <!--Hide/Show with alert box-->
+        <!-- <script>
+            $(document).ready(function(){
+                // Display alert message after hiding paragraphs
+                $(".hide-btn").click(function(){
+                    $("p").hide("slow", function(){
+                        // Code to be executed
+                        alert("The hide effect is completed.");
+                    });
+                });
+                
+                // Display alert message after showing paragraphs
+                $(".show-btn").click(function(){
+                    $("p").show("slow", function(){
+                        // Code to be executed
+                        alert("The show effect is completed.");
+                    });
+                });
+            });
+        </script> -->
+
+        <!--Toggle button-->
+        <!-- <script>
+            $(document).ready(function(){
+                // Toggles paragraphs with different speeds
+                $(".toggle-btn").click(function(){
+                    $("p.normal").toggle();
+                    $("p.fast").toggle("fast");
+                    $("p.slow").toggle("slow");
+                    $("p.very-fast").toggle(50);
+                    $("p.very-slow").toggle(2000);
+                });
+            });
+        </script> -->
+
+        <!-- SlideUp/SlideDown-->
+        <!-- <script>
+            $(document).ready(function(){
+                // Slide up displayed paragraphs
+                $(".up-btn").click(function(){
+                    $("p").slideUp();
+                });
+                
+                // Slide down hidden paragraphs
+                $(".down-btn").click(function(){
+                    $("p").slideDown();
+                });
+            });
+        </script> -->
+
+        <!--Image move-->
+        <!-- <script>
+            $(document).ready(function(){
+                $("button").click(function(){
+                    $("img").animate({
+                        left: 300
+                    });
+                });
+            });
+        </script> -->
+
+        <!--Box click resize-->
+        <!-- <script>
+            $(document).ready(function(){
+                $("button").click(function(){
+                    $(".box").animate({
+                        width: "300px",
+                        height: "300px",
+                        marginLeft: "150px",
+                        borderWidth: "10px",
+                        opacity: 0.5
+                    });
+                });
+            });
+        </script> -->
+
+        <!--Box click animate one by one(click 1 time)-->
+        <!-- <script>
+            $(document).ready(function(){
+                $("button").click(function(){
+                    $(".box")
+                        .animate({width: "300px"})
+                        .animate({height: "300px"})
+                        .animate({marginLeft: "150px"})
+                        .animate({borderWidth: "10px"})
+                        .animate({opacity: 0.5});
+                });
+            });
+        </script> -->
+
+        <!--Box click animate one by one(click 4 time)-->
+        <!-- <script>
+            $(document).ready(function(){
+                $("button").click(function(){
+                    $(".box").animate({            
+                        top: "+=50px",
+                        left: "+=50px",
+                        width: "+=50px",
+                        height: "+=50px"
+                    });
+                });
+            });
+        </script> -->
+
+        <!--Animation after toggle-->
+        <!-- <script>
+            $(document).ready(function(){
+                $("button").click(function(){
+                    $(".box").animate({
+                        width: 'toggle' //depend on the style width
+                    });
+                });
+            });
+        </script> -->
+
+        <!--Image move/stop/reset -->
+        <!-- <script>
+            $(document).ready(function(){
+                // Start animation
+                $(".start-btn").click(function(){
+                  $("img").animate({left: "+=150px"}, 2000);
+                });
+             
+                // Stop running animation
+                $(".stop-btn").click(function(){
+                  $("img").stop();
+                });
+                
+                // Start animation in the opposite direction
+                $(".back-btn").click(function(){
+                  $("img").animate({left: "-=150px"}, 2000);
+                });
+             
+                // Reset to default
+                $(".reset-btn").click(function(){
+                  $("img").animate({left: "0"}, "fast");
+                });
+            });
+        </script> -->
+
+        <!-- Point to image fadein/fadeout-->
+        <!-- <script>
+            $(document).ready(function(){
+                $(".box").hover(function(){
+                    $(this).find("img").stop(true, true).fadeOut();
+                }, function(){
+                    $(this).find("img").stop(true, true).fadeIn();
+                });
+            });
+        </script> -->
+
+        <!--Multiple action in same element same line-->
+        <!-- <script>
+            $(document).ready(function(){
+                $(".start").click(function(){
+                    $("p").animate({width: "100%"}).animate({fontSize: "46px"}).animate({borderWidth: 30});
+                });
+                $(".reset").click(function(){
+                    $("p").removeAttr("style");
+                });
+            });  
+        </script> -->
+
+        <!-- Toggle after alert -->
+        <!-- <script>
+            $(document).ready(function(){
+                $("button").click(function(){
+                    $("p").slideToggle("slow");
+                    alert("The slide toggle effect has completed.");
+                });   
+            });
+        </script> -->
+
+        <!-- Toggle before alert -->
+        <!-- <script>
+            $(document).ready(function(){
+                $("button").click(function(){
+                    $("p").slideToggle("slow", function(){
+                        // Code to be executed once effect is complete
+                        alert("The slide toggle effect has completed.");
+                    });
+                });   
+            });
+        </script> -->
+
+        <!--Get value from form-->
+        <!-- <script>
+            $(document).ready(function(){
+                $("button.get-name").click(function(){
+                    var name = $("#name").val();
+                    alert(name);
+                });
+                $("button.get-comment").click(function(){
+                    var comment = $("#comment").val();
+                    alert(comment);
+                });
+                $("button.get-city").click(function(){
+                    var city = $("#city").val();
+                    alert(city);
+                });
+            });
+        </script> -->
+
+        <!--Set value to form by button-->
+        <!-- <script>
+            $(document).ready(function(){
+                // Set value of all the text inputs
+                $("button").click(function(){
+                    var text = $(this).text();
+                    $('input[type="text"]').val(text);
+                });
+            });
+        </script> -->
+
+        <!-- Add href / add text -->
+        <!-- <script>
+            $(document).ready(function(){
+                // Append all paragraphs on document ready
+                $("p").append(' <a href="#">read more...</a>');
+                
+                // Append a div container on button click
+                $("button").click(function(){
+                   $("#container").append("This is demo text.");
+                });
+            });
+        </script> -->
+
+        <!-- Add text at the beginning of paragraph-->
+        <!-- <script>
+            $(document).ready(function(){
+                // Prepend all paragraphs on document ready
+                $("p").prepend("<strong>Note:</strong> ");
+                
+                // Prepend a div container on button click
+                $("button").click(function(){
+                   $("#container").prepend("This is demo text.");
+                });
+            });
+        </script> -->
+
+        <!--Multiple element with append/ prepend-->
+</head>
+<body>
+    <button type="button" class="hide-btn">Hide Paragraphs</button> 
+    <button type="button" class="show-btn">Show Paragraphs</button>
+    <p>This is a paragraph.</p>
+    <p>This is another paragraph.</p>
+</body>
+</html>
