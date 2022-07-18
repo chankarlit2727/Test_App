@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'rest_framework',
+    'snippets',
     'urlInput.apps.UrlinputConfig',
     'django.contrib.admin',
     'django.contrib.auth',
